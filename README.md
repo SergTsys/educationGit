@@ -25,4 +25,6 @@ The fourth change ReadMe Document with assist comand line and git (not with gitC
 
 The fifth change ReadMwe document to study Git
 
+And now we will chack how well you have learned the lesson
+
 
