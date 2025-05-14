@@ -21,9 +21,8 @@ The Third change ReadMe Document
 - но потом собрался
 - и все
 
+The fourth change ReadMe Document with assist comand line and git (not with gitCraken)
 
-ХУЙ ГОВНО и МУРАВЕЙ
-
-The four change ReadMe Document with assist comand line and git (not with gitCraken)
+The fifth change ReadMwe document to study Git
 
 
