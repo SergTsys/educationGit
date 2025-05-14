@@ -29,3 +29,5 @@ And now we will chack how well you have learned the lesson
 
 
 Add line
+
+Final check kommit -m command
