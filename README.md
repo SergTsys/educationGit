@@ -12,7 +12,7 @@ The Second change ReadMe Document
 - Рак за палец греку цап
 
 
-The Thirs change ReadMe Document
+The Third change ReadMe Document
 
 - вот тут лопять чуть не попал в ловушка Каца
 - он меня хотел подловить
@@ -23,5 +23,7 @@ The Thirs change ReadMe Document
 
 
 ХУЙ ГОВНО и МУРАВЕЙ
+
+The four change ReadMe Document with assist comand line and git (not with gitCraken)
 
 
