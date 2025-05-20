@@ -1,0 +1,2116 @@
+{
+	"info": {
+		"_postman_id": "ff6c8151-6d99-4085-9cbb-7ca75e50f18c",
+		"name": "X-Challenger full collection requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "42364155"
+	},
+	"item": [
+		{
+			"name": "01: to create session (201)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var token = pm.response.headers.get(\"X-Challenger\");\r",
+							"pm.collectionVariables.set(\"X-Challenger_AUTO\", token)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": "{{base_URL}}challenger"
+			},
+			"response": []
+		},
+		{
+			"name": "02: to get the list of challenges (200)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{base_URL}}challenges"
+			},
+			"response": []
+		},
+		{
+			"name": "03: simple request (200)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text"
+					}
+				],
+				"url": "{{base_URL}}todos"
+			},
+			"response": []
+		},
+		{
+			"name": "04: not plural endpoint (404)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text"
+					}
+				],
+				"url": "{{base_URL}}todo"
+			},
+			"response": []
+		},
+		{
+			"name": "05: request with correct ID (200)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text"
+					}
+				],
+				"url": "{{base_URL}}todos/9"
+			},
+			"response": []
+		},
+		{
+			"name": "06: request with uncorrect ID (404)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text"
+					}
+				],
+				"url": "{{base_URL}}todos/91"
+			},
+			"response": []
+		},
+		{
+			"name": "07: request with filter doneStatus=true (200)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_URL}}todos?doneStatus=true",
+					"host": [
+						"{{base_URL}}todos"
+					],
+					"query": [
+						{
+							"key": "doneStatus",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "08: to get headers (200)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "HEAD",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text"
+					}
+				],
+				"url": "{{base_URL}}todos"
+			},
+			"response": []
+		},
+		{
+			"name": "09: to make a todos (201)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"add Mr.Hankey to a playground\",\r\n    \"doneStatus\": true,\r\n    \"description\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}todos"
+			},
+			"response": []
+		},
+		{
+			"name": "10: doneStatus fail (400)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"add Mr.Hankey to a playground\",\r\n    \"doneStatus\": none,\r\n    \"description\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}todos"
+			},
+			"response": []
+		},
+		{
+			"name": "11: too long title (400)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"add Mr.Hankey to a playgroundadd Mr.Hankey to a playgroundadd Mr.Hankey to a playgroundadd Mr.Hankey to a playgroundadd Mr.Hankey to a playgroundadd Mr.Hankey to a playgroundadd Mr.Hankey to a playgroundadd Mr.Hankey to a playgroundadd Mr.Hankey to a playgroundadd Mr.Hankey to a playground\",\r\n    \"doneStatus\": true,\r\n    \"description\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}todos"
+			},
+			"response": []
+		},
+		{
+			"name": "12: too long discription (400)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"add Mr.Hankey to a playgroundadd\",\r\n    \"doneStatus\": true,\r\n    \"description\": \"The motorcicle is't mine, i'm just a posted an announcement.The motorcicle is't mine, i'm just a posted an announcement.The motorcicle is't mine, i'm just a posted an announcement.The motorcicle is't mine, i'm just a posted an announcement.The motorcicle is't mine, i'm just a posted an announcement.The motorcicle is't mine, i'm just a posted an announcement.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}todos"
+			},
+			"response": []
+		},
+		{
+			"name": "13: max out content (201)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"add_Mr.Hankey_to_a_playground_add_Mr.Hankey_to_a_a\",\r\n    \"doneStatus\": true,\r\n    \"description\": \"The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}todos"
+			},
+			"response": []
+		},
+		{
+			"name": "14: content too long (413)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"add_Mr.Hankey_to_a_playground_add_Mr.Hankey_to_a_a\",\r\n    \"doneStatus\": true,\r\n    \"description\": \"The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}todos"
+			},
+			"response": []
+		},
+		{
+			"name": "15: extra (400)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"add Mr.Hankey to a playground\",\r\n    \"doneStatus\": true,\r\n    \"age\": 100,\r\n    \"description\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}todos"
+			},
+			"response": []
+		},
+		{
+			"name": "16: unsuccessfully create (400)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"add Mr.Hankey to a playground\",\r\n    \"doneStatus\": true,\r\n    \"description\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}todos/50"
+			},
+			"response": []
+		},
+		{
+			"name": "17: successfully update (200)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"add Officer Barbrady to a playground\",\r\n    \"doneStatus\": true,\r\n    \"description\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}todos/9"
+			},
+			"response": []
+		},
+		{
+			"name": "18: unsuccessfully update (404)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"add Officer Barbrady to a playground\",\r\n    \"doneStatus\": true,\r\n    \"description\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}todos/50"
+			},
+			"response": []
+		},
+		{
+			"name": "19: full updating (200)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"delete Mr.Macky from a playground\",\r\n    \"doneStatus\": false,\r\n    \"description\": \"yes, yes, it's for 19ex\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}todos/9"
+			},
+			"response": []
+		},
+		{
+			"name": "20: partial updating (200)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"delete Mr.Macky from a playground\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}todos/9"
+			},
+			"response": []
+		},
+		{
+			"name": "21: update is faild (400)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"doneStatus\": false,\r\n    \"description\": \"yes, yes, it's for 19ex\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}todos/9"
+			},
+			"response": []
+		},
+		{
+			"name": "22: update is faild 2 (400)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 11,\r\n    \"title\": \"delete Mr.Macky from a playground\",\r\n    \"doneStatus\": false,\r\n    \"description\": \"yes, yes, it's for 19ex\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}todos/9"
+			},
+			"response": []
+		},
+		{
+			"name": "23: delete to do (200)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"delete Mr.Macky from a playground\",\r\n    \"doneStatus\": false,\r\n    \"description\": \"yes, yes, it's for 19ex\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}todos/9"
+			},
+			"response": []
+		},
+		{
+			"name": "24: to check allow status (200)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "OPTIONS",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text"
+					}
+				],
+				"url": "{{base_URL}}todos"
+			},
+			"response": []
+		},
+		{
+			"name": "25: ACCEPT: XML in response (200)",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": "{{base_URL}}todos"
+			},
+			"response": []
+		},
+		{
+			"name": "26: ACCEPT: JSON in response (200)",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": "{{base_URL}}todos"
+			},
+			"response": []
+		},
+		{
+			"name": "27: ACCEPT: def in response (200)",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": "{{base_URL}}todos"
+			},
+			"response": []
+		},
+		{
+			"name": "28: ACCEPT: XML in preference (200)",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/xml, application/json",
+						"type": "text"
+					}
+				],
+				"url": "{{base_URL}}todos"
+			},
+			"response": []
+		},
+		{
+			"name": "29: ACCEPT: JSON as def (200)",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{base_URL}}todos"
+			},
+			"response": []
+		},
+		{
+			"name": "30: ACCEPT: Wrong accept type (406)",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/gzip",
+						"type": "text"
+					}
+				],
+				"url": "{{base_URL}}todos"
+			},
+			"response": []
+		},
+		{
+			"name": "31:  Content-Type only XML (201)",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<todo>\r\n    <title>add Mr.Hankey to a playground</title>\r\n    <doneStatus>true</doneStatus>\r\n    <description></description>\r\n</todo>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{base_URL}}todos"
+			},
+			"response": []
+		},
+		{
+			"name": "32:  Content-Type only JSON (201)",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"add Mr.Hankey to a playground\",\r\n    \"doneStatus\": true,\r\n    \"description\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}todos"
+			},
+			"response": []
+		},
+		{
+			"name": "33:  Content-Type unsupported (415)",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/ecmascript",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"add Mr.Hankey to a playground\",\r\n    \"doneStatus\": true,\r\n    \"description\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "javascript"
+						}
+					}
+				},
+				"url": "{{base_URL}}todos"
+			},
+			"response": []
+		},
+		{
+			"name": "34: to save the progress (200)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}challenger/{{X-Challenger_AUTO}}"
+			},
+			"response": []
+		},
+		{
+			"name": "35: making the restore progress (200)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"xAuthToken\": \"f36db6d7-e44c-4eba-9cca-8aac01f73489\",\r\n    \"xChallenger\": \"{{X-Challenger_AUTO}}\",\r\n    \"secretNote\": \"\",\r\n    \"challengeStatus\": {\r\n        \"PUT_RESTORABLE_CHALLENGER_PROGRESS_STATUS\": false,\r\n        \"GET_TODOS\": true,\r\n        \"PUT_NEW_RESTORED_CHALLENGER_PROGRESS_STATUS\": false,\r\n        \"POST_TODOS\": true,\r\n        \"OVERRIDE_PATCH_HEARTBEAT_500\": false,\r\n        \"POST_TODOS_TOO_LONG_DESCRIPTION_LENGTH\": true,\r\n        \"GET_RESTORABLE_CHALLENGER_PROGRESS_STATUS\": true,\r\n        \"POST_SECRET_NOTE_401\": false,\r\n        \"PUT_TODOS_PARTIAL_200\": true,\r\n        \"GET_TODOS_FILTERED\": false,\r\n        \"GET_TODO_404\": true,\r\n        \"PUT_TODOS_400_NO_AMEND_ID\": true,\r\n        \"GET_HEARTBEAT_204\": false,\r\n        \"POST_TODOS_INVALID_EXTRA_FIELD\": true,\r\n        \"POST_SECRET_NOTE_BEARER_200\": false,\r\n        \"POST_CREATE_XML_ACCEPT_JSON\": false,\r\n        \"GET_ACCEPT_XML_PREFERRED\": true,\r\n        \"POST_SECRET_NOTE_200\": false,\r\n        \"CREATE_NEW_CHALLENGER\": true,\r\n        \"POST_UPDATE_TODO\": true,\r\n        \"GET_CHALLENGES\": true,\r\n        \"GET_HEAD_TODOS\": true,\r\n        \"POST_SECRET_NOTE_403\": false,\r\n        \"GET_RESTORABLE_TODOS\": false,\r\n        \"GET_ACCEPT_XML\": true,\r\n        \"POST_TODOS_415\": true,\r\n        \"GET_ACCEPT_JSON\": true,\r\n        \"CREATE_SECRET_TOKEN_201\": false,\r\n        \"OVERRIDE_DELETE_HEARTBEAT_405\": false,\r\n        \"POST_TODOS_BAD_DONE_STATUS\": true,\r\n        \"GET_SECRET_NOTE_200\": false,\r\n        \"OVERRIDE_TRACE_HEARTBEAT_501\": false,\r\n        \"POST_TODOS_404\": true,\r\n        \"POST_CREATE_JSON_ACCEPT_XML\": false,\r\n        \"GET_SECRET_NOTE_BEARER_200\": false,\r\n        \"GET_TODO\": true,\r\n        \"PUT_TODOS_FULL_200\": true,\r\n        \"GET_ACCEPT_ANY_DEFAULT_JSON\": true,\r\n        \"GET_SECRET_NOTE_401\": false,\r\n        \"POST_MAX_OUT_TITLE_DESCRIPTION_LENGTH\": true,\r\n        \"POST_CREATE_JSON\": true,\r\n        \"PATCH_HEARTBEAT_500\": false,\r\n        \"DELETE_A_TODO\": true,\r\n        \"DELETE_ALL_TODOS\": false,\r\n        \"POST_TODOS_TOO_LONG_PAYLOAD_SIZE\": true,\r\n        \"TRACE_HEARTBEAT_501\": false,\r\n        \"DELETE_HEARTBEAT_405\": false,\r\n        \"POST_ALL_TODOS\": false,\r\n        \"GET_SECRET_NOTE_403\": false,\r\n        \"PUT_TODOS_MISSING_TITLE_400\": true,\r\n        \"OPTIONS_TODOS\": true,\r\n        \"GET_JSON_BY_DEFAULT_NO_ACCEPT\": false,\r\n        \"POST_TODOS_TOO_LONG_TITLE_LENGTH\": true,\r\n        \"PUT_RESTORABLE_TODOS\": false,\r\n        \"GET_TODOS_NOT_PLURAL_404\": true,\r\n        \"POST_CREATE_XML\": true,\r\n        \"CREATE_SECRET_TOKEN_401\": false,\r\n        \"PUT_TODOS_400\": true,\r\n        \"GET_UNSUPPORTED_ACCEPT_406\": true\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}challenger/{{X-Challenger_AUTO}}"
+			},
+			"response": []
+		},
+		{
+			"name": "36: to restore the progress (201)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"xAuthToken\": \"f36db6d7-e44c-4eba-9cca-8aac01f73489\",\r\n    \"xChallenger\": \"dec59150-bac7-4227-b774-e45c496bf4aa\",\r\n    \"secretNote\": \"\",\r\n    \"challengeStatus\": {\r\n        \"PUT_RESTORABLE_CHALLENGER_PROGRESS_STATUS\": false,\r\n        \"GET_TODOS\": true,\r\n        \"PUT_NEW_RESTORED_CHALLENGER_PROGRESS_STATUS\": false,\r\n        \"POST_TODOS\": true,\r\n        \"OVERRIDE_PATCH_HEARTBEAT_500\": false,\r\n        \"POST_TODOS_TOO_LONG_DESCRIPTION_LENGTH\": true,\r\n        \"GET_RESTORABLE_CHALLENGER_PROGRESS_STATUS\": true,\r\n        \"POST_SECRET_NOTE_401\": false,\r\n        \"PUT_TODOS_PARTIAL_200\": true,\r\n        \"GET_TODOS_FILTERED\": false,\r\n        \"GET_TODO_404\": true,\r\n        \"PUT_TODOS_400_NO_AMEND_ID\": true,\r\n        \"GET_HEARTBEAT_204\": false,\r\n        \"POST_TODOS_INVALID_EXTRA_FIELD\": true,\r\n        \"POST_SECRET_NOTE_BEARER_200\": false,\r\n        \"POST_CREATE_XML_ACCEPT_JSON\": false,\r\n        \"GET_ACCEPT_XML_PREFERRED\": true,\r\n        \"POST_SECRET_NOTE_200\": false,\r\n        \"CREATE_NEW_CHALLENGER\": true,\r\n        \"POST_UPDATE_TODO\": true,\r\n        \"GET_CHALLENGES\": true,\r\n        \"GET_HEAD_TODOS\": true,\r\n        \"POST_SECRET_NOTE_403\": false,\r\n        \"GET_RESTORABLE_TODOS\": false,\r\n        \"GET_ACCEPT_XML\": true,\r\n        \"POST_TODOS_415\": true,\r\n        \"GET_ACCEPT_JSON\": true,\r\n        \"CREATE_SECRET_TOKEN_201\": false,\r\n        \"OVERRIDE_DELETE_HEARTBEAT_405\": false,\r\n        \"POST_TODOS_BAD_DONE_STATUS\": true,\r\n        \"GET_SECRET_NOTE_200\": false,\r\n        \"OVERRIDE_TRACE_HEARTBEAT_501\": false,\r\n        \"POST_TODOS_404\": true,\r\n        \"POST_CREATE_JSON_ACCEPT_XML\": false,\r\n        \"GET_SECRET_NOTE_BEARER_200\": false,\r\n        \"GET_TODO\": true,\r\n        \"PUT_TODOS_FULL_200\": true,\r\n        \"GET_ACCEPT_ANY_DEFAULT_JSON\": true,\r\n        \"GET_SECRET_NOTE_401\": false,\r\n        \"POST_MAX_OUT_TITLE_DESCRIPTION_LENGTH\": true,\r\n        \"POST_CREATE_JSON\": true,\r\n        \"PATCH_HEARTBEAT_500\": false,\r\n        \"DELETE_A_TODO\": true,\r\n        \"DELETE_ALL_TODOS\": false,\r\n        \"POST_TODOS_TOO_LONG_PAYLOAD_SIZE\": true,\r\n        \"TRACE_HEARTBEAT_501\": false,\r\n        \"DELETE_HEARTBEAT_405\": false,\r\n        \"POST_ALL_TODOS\": false,\r\n        \"GET_SECRET_NOTE_403\": false,\r\n        \"PUT_TODOS_MISSING_TITLE_400\": true,\r\n        \"OPTIONS_TODOS\": true,\r\n        \"GET_JSON_BY_DEFAULT_NO_ACCEPT\": false,\r\n        \"POST_TODOS_TOO_LONG_TITLE_LENGTH\": true,\r\n        \"PUT_RESTORABLE_TODOS\": false,\r\n        \"GET_TODOS_NOT_PLURAL_404\": true,\r\n        \"POST_CREATE_XML\": true,\r\n        \"CREATE_SECRET_TOKEN_401\": false,\r\n        \"PUT_TODOS_400\": true,\r\n        \"GET_UNSUPPORTED_ACCEPT_406\": true\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}challenger/dec59150-bac7-4227-b774-e45c496bf4aa"
+			},
+			"response": []
+		},
+		{
+			"name": "37: current todos database (200)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}challenger/database/{{X-Challenger_AUTO}}"
+			},
+			"response": []
+		},
+		{
+			"name": "38: restore database (204)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"todos\": [\r\n        {\r\n            \"id\": 18,\r\n            \"title\": \"add Mr.Hankey to a playground\",\r\n            \"doneStatus\": true,\r\n            \"description\": \"\"\r\n        },\r\n        {\r\n            \"id\": 3,\r\n            \"title\": \"process payments\"\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"title\": \"file paperwork\"\r\n        },\r\n        {\r\n            \"id\": 17,\r\n            \"title\": \"add Mr.Hankey to a playground\",\r\n            \"doneStatus\": true,\r\n            \"description\": \"\"\r\n        },\r\n        {\r\n            \"id\": 4,\r\n            \"title\": \"escalate late payments\"\r\n        },\r\n        {\r\n            \"id\": 11,\r\n            \"title\": \"add Mr.Hankey to a playground\",\r\n            \"doneStatus\": true,\r\n            \"description\": \"\"\r\n        },\r\n        {\r\n            \"id\": 6,\r\n            \"title\": \"process payroll\"\r\n        },\r\n        {\r\n            \"id\": 8,\r\n            \"title\": \"schedule meeting\"\r\n        },\r\n        {\r\n            \"id\": 15,\r\n            \"title\": \"add_Mr.Hankey_to_a_playground_add_Mr.Hankey_to_a_a\",\r\n            \"doneStatus\": true,\r\n            \"description\": \"The_motorcicle_is't_mine,_i'm_just_posted_an_announcement_The_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'm_just_posted_an_announcementThe_motorcicle_is't_mine,_i'\"\r\n        },\r\n        {\r\n            \"id\": 5,\r\n            \"title\": \"pay invoices\"\r\n        },\r\n        {\r\n            \"id\": 1,\r\n            \"title\": \"scan paperwork\"\r\n        },\r\n        {\r\n            \"id\": 10,\r\n            \"title\": \"install webcam\"\r\n        },\r\n        {\r\n            \"id\": 7,\r\n            \"title\": \"train staff\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}challenger/database/{{X-Challenger_AUTO}}"
+			},
+			"response": []
+		},
+		{
+			"name": "39: CT-XML, ACCEPT-JSON (200) Copy",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<todo>\r\n    <title>add Mr.Hankey to a playground</title>\r\n    <doneStatus>true</doneStatus>\r\n    <description></description>\r\n</todo>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{base_URL}}todos"
+			},
+			"response": []
+		},
+		{
+			"name": "40:  C-T-JSON, ACCEPT-XML(200)",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"add Mr.Hankey to a playground\",\r\n    \"doneStatus\": true,\r\n    \"description\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}todos"
+			},
+			"response": []
+		},
+		{
+			"name": "41: to get 405 (405)",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}heartbeat"
+			},
+			"response": []
+		},
+		{
+			"name": "42: to get 500 (500)",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}heartbeat"
+			},
+			"response": []
+		},
+		{
+			"name": "43: to get 501 (501)",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "TRACE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}heartbeat"
+			},
+			"response": []
+		},
+		{
+			"name": "44: to get 204 (204)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}heartbeat"
+			},
+			"response": []
+		},
+		{
+			"name": "45: Overrite to get 405 (405)",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-HTTP-Method-Override",
+						"value": "DELETE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}heartbeat"
+			},
+			"response": []
+		},
+		{
+			"name": "46: Overrite to get 500 (500)",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-HTTP-Method-Override",
+						"value": "PATCH",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}heartbeat"
+			},
+			"response": []
+		},
+		{
+			"name": "47: Overrite to get 501 (501)",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-HTTP-Method-Override",
+						"value": "TRACE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}heartbeat"
+			},
+			"response": []
+		},
+		{
+			"name": "48: to take secret token (401)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var token = pm.response.headers.get(\"X-Challenger\");\r",
+							"pm.collectionVariables.set(\"X-Challenger_AUTO\", token)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "admin",
+						"username": "admin"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger_AUTO}}",
+						"type": "text"
+					}
+				],
+				"url": "{{base_URL}}secret/token"
+			},
+			"response": []
+		},
+		{
+			"name": "49: to take secret token (201)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var token = pm.response.headers.get(\"X-Auth-Token\");\r",
+							"pm.collectionVariables.set(\"X-Auth-Token\", token)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "admin",
+						"password": "password"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger_AUTO}}",
+						"type": "text"
+					}
+				],
+				"url": "{{base_URL}}secret/token"
+			},
+			"response": []
+		},
+		{
+			"name": "50: request with a bad token (403)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger_AUTO}}",
+						"type": "text"
+					},
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "big time",
+						"type": "text"
+					}
+				],
+				"url": "{{base_URL}}secret/note"
+			},
+			"response": []
+		},
+		{
+			"name": "51: request without 2-nd token (401)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger_AUTO}}",
+						"type": "text"
+					}
+				],
+				"url": "{{base_URL}}secret/note"
+			},
+			"response": []
+		},
+		{
+			"name": "52: request with two wright token (200)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger_AUTO}}",
+						"type": "text"
+					},
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "{{X-Auth-Token}}",
+						"type": "text"
+					}
+				],
+				"url": "{{base_URL}}secret/note"
+			},
+			"response": []
+		},
+		{
+			"name": "53: request with the note (200)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger_AUTO}}",
+						"type": "text"
+					},
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "{{X-Auth-Token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"note\": \"Lord Almighty, I ask for little: that I may be patient, persistent, and filled with hope\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}secret/note"
+			},
+			"response": []
+		},
+		{
+			"name": "54: request without 2-nd token 2 (401)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger_AUTO}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"note\": \"Lord Almighty, I ask for little: that I may be patient, persistent, and filled with hope\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}secret/note"
+			},
+			"response": []
+		},
+		{
+			"name": "55: request with a bad token 2 (403)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger_AUTO}}",
+						"type": "text"
+					},
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "big time",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"note\": \"Lord Almighty, I ask for little: that I may be patient, persistent, and filled with hope\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}secret/note"
+			},
+			"response": []
+		},
+		{
+			"name": "56 request with Bearer token (200)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{X-Auth-Token}}"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger_AUTO}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}secret/note"
+			},
+			"response": []
+		},
+		{
+			"name": "57 request with two wright token 2 (200)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{X-Auth-Token}}"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Challenger",
+						"value": "{{X-Challenger_AUTO}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"note\": \"Lord Almighty, I ask for little: that I may be patient, persistent, and filled with hope\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}secret/note"
+			},
+			"response": []
+		},
+		{
+			"name": "07: request with filter doneStatus=true (200) Copy",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CHALLENGER",
+						"value": "{{x-challenger-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_URL}}todos?doneStatus=true",
+					"host": [
+						"{{base_URL}}todos"
+					],
+					"query": [
+						{
+							"key": "doneStatus",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "29: ACCEPT: JSON as def (200) Copy",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{base_URL}}todos"
+			},
+			"response": []
+		},
+		{
+			"name": "58/1: get to delete all (200)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let data = pm.response.json();\r",
+							"\r",
+							"if (Array.isArray(data.todos) && data.todos.length > 0) {\r",
+							"    let ids = data.todos.map(todo => todo.id);\r",
+							"    pm.collectionVariables.set(\"todo_ids\", JSON.stringify(ids));\r",
+							"    console.log(\"✅ Сохранил ID-шники:\", ids);\r",
+							"    pm.execution.setNextRequest(\"58/2 DELETE ToDo\");  // 👉 Запускаем следующий\r",
+							"} else {\r",
+							"    console.log(\"⚠️ Нет ToDo-шек\");\r",
+							"    pm.collectionVariables.unset(\"todo_ids\");\r",
+							"    pm.execution.setNextRequest(null); // Остановить выполнение\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}todos"
+			},
+			"response": []
+		},
+		{
+			"name": "58/2 DELETE ToDo",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let idsRaw = pm.collectionVariables.get(\"todo_ids\") || \"[]\";\r",
+							"let ids = JSON.parse(idsRaw);\r",
+							"\r",
+							"if (ids.length === 0) {\r",
+							"    pm.execution.setNextRequest(null);  // Всё удалено\r",
+							"} else {\r",
+							"    let currentId = ids.shift(); // Берём текущий ID\r",
+							"    pm.collectionVariables.set(\"todo_id\", currentId); // Установить для URL\r",
+							"    pm.collectionVariables.set(\"todo_ids\", JSON.stringify(ids)); // Обновить список\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"ToDo удалён\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"let ids = JSON.parse(pm.collectionVariables.get(\"todo_ids\") || \"[]\");\r",
+							"\r",
+							"if (ids.length > 0) {\r",
+							"    pm.execution.setNextRequest(\"58/2 DELETE ToDo\"); // 👉 Повторяем запрос\r",
+							"} "
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_URL}}todos/{{todo_id}}"
+			},
+			"response": []
+		},
+		{
+			"name": "59: POST until limit",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let currentCount = parseInt(pm.collectionVariables.get(\"todo_post_count\") || \"0\");",
+							"pm.collectionVariables.set(\"todo_post_count\", currentCount + 1);",
+							"",
+							"let payload = {",
+							"    title: `Generated TODO ${currentCount + 1}`,",
+							"    doneStatus: false,",
+							"    description: `Auto-generated item ${currentCount + 1}`",
+							"};",
+							"",
+							"pm.variables.set(\"todo_payload\", JSON.stringify(payload));"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if (pm.response.code === 201) {",
+							"    console.log(\"✅ ToDo создан:\", pm.collectionVariables.get(\"todo_post_count\"));",
+							"    pm.execution.setNextRequest(\"59: POST until limit\"); // имя запроса",
+							"}",
+							"// Ошибка — останавливаем",
+							"else {",
+							"    console.warn(\"🛑 Достигнут предел создания ToDo. Код:\", pm.response.code);",
+							"    console.warn(\"Ответ:\", pm.response.text());",
+							"    pm.execution.setNextRequest(null);",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {
+						"value": "{{X-Challenger_AUTO}}",
+						"key": "X-Challenger"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{{todo_payload}}"
+				},
+				"url": "{{base_URL}}todos"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": {
+			"key": "X-Challenger",
+			"value": "{{x-challenger-token}}"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_URL",
+			"value": "https://apichallenges.herokuapp.com/",
+			"type": "default"
+		},
+		{
+			"key": "X-Challenger_AUTO",
+			"value": ""
+		},
+		{
+			"key": "X-Auth-Token",
+			"value": ""
+		},
+		{
+			"key": "todo_ids",
+			"value": ""
+		},
+		{
+			"key": "todo_id",
+			"value": ""
+		},
+		{
+			"key": "currentTitle",
+			"value": ""
+		},
+		{
+			"key": "createdCount",
+			"value": ""
+		},
+		{
+			"key": "todo_post_count",
+			"value": ""
+		}
+	]
+}
