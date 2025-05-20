@@ -27,7 +27,7 @@
 				},
 				"method": "POST",
 				"header": [],
-				"url": "{{base_URL}}challenger"
+				"url": "{{base_URL}}/challenger"
 			},
 			"response": []
 		},
@@ -43,7 +43,7 @@
 				},
 				"method": "GET",
 				"header": [],
-				"url": "{{base_URL}}challenges"
+				"url": "{{base_URL}}/challenges"
 			},
 			"response": []
 		},
@@ -65,7 +65,7 @@
 						"type": "text"
 					}
 				],
-				"url": "{{base_URL}}todos"
+				"url": "{{base_URL}}/todos"
 			},
 			"response": []
 		},
@@ -87,7 +87,7 @@
 						"type": "text"
 					}
 				],
-				"url": "{{base_URL}}todo"
+				"url": "{{base_URL}}/todo"
 			},
 			"response": []
 		},
@@ -109,7 +109,7 @@
 						"type": "text"
 					}
 				],
-				"url": "{{base_URL}}todos/9"
+				"url": "{{base_URL}}/todos/9"
 			},
 			"response": []
 		},
@@ -131,7 +131,7 @@
 						"type": "text"
 					}
 				],
-				"url": "{{base_URL}}todos/91"
+				"url": "{{base_URL}}/todos/91"
 			},
 			"response": []
 		},
@@ -154,9 +154,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_URL}}todos?doneStatus=true",
+					"raw": "{{base_URL}}/todos?doneStatus=true",
 					"host": [
-						"{{base_URL}}todos"
+						"{{base_URL}}"
+					],
+					"path": [
+						"todos"
 					],
 					"query": [
 						{
@@ -186,7 +189,7 @@
 						"type": "text"
 					}
 				],
-				"url": "{{base_URL}}todos"
+				"url": "{{base_URL}}/todos"
 			},
 			"response": []
 		},
@@ -217,7 +220,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}todos"
+				"url": "{{base_URL}}/todos"
 			},
 			"response": []
 		},
@@ -248,7 +251,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}todos"
+				"url": "{{base_URL}}/todos"
 			},
 			"response": []
 		},
@@ -280,7 +283,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}todos"
+				"url": "{{base_URL}}/todos"
 			},
 			"response": []
 		},
@@ -312,7 +315,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}todos"
+				"url": "{{base_URL}}/todos"
 			},
 			"response": []
 		},
@@ -344,7 +347,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}todos"
+				"url": "{{base_URL}}/todos"
 			},
 			"response": []
 		},
@@ -376,7 +379,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}todos"
+				"url": "{{base_URL}}/todos"
 			},
 			"response": []
 		},
@@ -408,7 +411,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}todos"
+				"url": "{{base_URL}}/todos"
 			},
 			"response": []
 		},
@@ -439,7 +442,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}todos/50"
+				"url": "{{base_URL}}/todos/50"
 			},
 			"response": []
 		},
@@ -470,7 +473,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}todos/9"
+				"url": "{{base_URL}}/todos/9"
 			},
 			"response": []
 		},
@@ -501,7 +504,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}todos/50"
+				"url": "{{base_URL}}/todos/50"
 			},
 			"response": []
 		},
@@ -532,7 +535,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}todos/9"
+				"url": "{{base_URL}}/todos/9"
 			},
 			"response": []
 		},
@@ -563,7 +566,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}todos/9"
+				"url": "{{base_URL}}/todos/9"
 			},
 			"response": []
 		},
@@ -594,7 +597,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}todos/9"
+				"url": "{{base_URL}}/todos/9"
 			},
 			"response": []
 		},
@@ -625,7 +628,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}todos/9"
+				"url": "{{base_URL}}/todos/9"
 			},
 			"response": []
 		},
@@ -656,7 +659,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}todos/9"
+				"url": "{{base_URL}}/todos/9"
 			},
 			"response": []
 		},
@@ -678,7 +681,7 @@
 						"type": "text"
 					}
 				],
-				"url": "{{base_URL}}todos"
+				"url": "{{base_URL}}/todos"
 			},
 			"response": []
 		},
@@ -709,7 +712,7 @@
 						"type": "text"
 					}
 				],
-				"url": "{{base_URL}}todos"
+				"url": "{{base_URL}}/todos"
 			},
 			"response": []
 		},
@@ -740,7 +743,7 @@
 						"type": "text"
 					}
 				],
-				"url": "{{base_URL}}todos"
+				"url": "{{base_URL}}/todos"
 			},
 			"response": []
 		},
@@ -771,7 +774,7 @@
 						"type": "text"
 					}
 				],
-				"url": "{{base_URL}}todos"
+				"url": "{{base_URL}}/todos"
 			},
 			"response": []
 		},
@@ -804,7 +807,7 @@
 						"type": "text"
 					}
 				],
-				"url": "{{base_URL}}todos"
+				"url": "{{base_URL}}/todos"
 			},
 			"response": []
 		},
@@ -825,7 +828,7 @@
 				},
 				"method": "GET",
 				"header": [],
-				"url": "{{base_URL}}todos"
+				"url": "{{base_URL}}/todos"
 			},
 			"response": []
 		},
@@ -850,7 +853,7 @@
 						"type": "text"
 					}
 				],
-				"url": "{{base_URL}}todos"
+				"url": "{{base_URL}}/todos"
 			},
 			"response": []
 		},
@@ -891,7 +894,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}todos"
+				"url": "{{base_URL}}/todos"
 			},
 			"response": []
 		},
@@ -932,7 +935,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}todos"
+				"url": "{{base_URL}}/todos"
 			},
 			"response": []
 		},
@@ -966,7 +969,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}todos"
+				"url": "{{base_URL}}/todos"
 			},
 			"response": []
 		},
@@ -1000,7 +1003,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}challenger/{{X-Challenger_AUTO}}"
+				"url": "{{base_URL}}/challenger/{{X-Challenger_AUTO}}"
 			},
 			"response": []
 		},
@@ -1025,7 +1028,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}challenger/{{X-Challenger_AUTO}}"
+				"url": "{{base_URL}}/challenger/{{X-Challenger_AUTO}}"
 			},
 			"response": []
 		},
@@ -1062,7 +1065,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}challenger/dec59150-bac7-4227-b774-e45c496bf4aa"
+				"url": "{{base_URL}}/challenger/dec59150-bac7-4227-b774-e45c496bf4aa"
 			},
 			"response": []
 		},
@@ -1090,7 +1093,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}challenger/database/{{X-Challenger_AUTO}}"
+				"url": "{{base_URL}}/challenger/database/{{X-Challenger_AUTO}}"
 			},
 			"response": []
 		},
@@ -1115,7 +1118,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}challenger/database/{{X-Challenger_AUTO}}"
+				"url": "{{base_URL}}/challenger/database/{{X-Challenger_AUTO}}"
 			},
 			"response": []
 		},
@@ -1156,7 +1159,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}todos"
+				"url": "{{base_URL}}/todos"
 			},
 			"response": []
 		},
@@ -1197,7 +1200,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}todos"
+				"url": "{{base_URL}}/todos"
 			},
 			"response": []
 		},
@@ -1225,7 +1228,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}heartbeat"
+				"url": "{{base_URL}}/heartbeat"
 			},
 			"response": []
 		},
@@ -1253,7 +1256,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}heartbeat"
+				"url": "{{base_URL}}/heartbeat"
 			},
 			"response": []
 		},
@@ -1281,7 +1284,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}heartbeat"
+				"url": "{{base_URL}}/heartbeat"
 			},
 			"response": []
 		},
@@ -1310,7 +1313,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}heartbeat"
+				"url": "{{base_URL}}/heartbeat"
 			},
 			"response": []
 		},
@@ -1344,7 +1347,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}heartbeat"
+				"url": "{{base_URL}}/heartbeat"
 			},
 			"response": []
 		},
@@ -1378,7 +1381,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}heartbeat"
+				"url": "{{base_URL}}/heartbeat"
 			},
 			"response": []
 		},
@@ -1412,7 +1415,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}heartbeat"
+				"url": "{{base_URL}}/heartbeat"
 			},
 			"response": []
 		},
@@ -1447,7 +1450,7 @@
 						"type": "text"
 					}
 				],
-				"url": "{{base_URL}}secret/token"
+				"url": "{{base_URL}}/secret/token"
 			},
 			"response": []
 		},
@@ -1482,7 +1485,7 @@
 						"type": "text"
 					}
 				],
-				"url": "{{base_URL}}secret/token"
+				"url": "{{base_URL}}/secret/token"
 			},
 			"response": []
 		},
@@ -1517,7 +1520,7 @@
 						"type": "text"
 					}
 				],
-				"url": "{{base_URL}}secret/note"
+				"url": "{{base_URL}}/secret/note"
 			},
 			"response": []
 		},
@@ -1547,7 +1550,7 @@
 						"type": "text"
 					}
 				],
-				"url": "{{base_URL}}secret/note"
+				"url": "{{base_URL}}/secret/note"
 			},
 			"response": []
 		},
@@ -1582,7 +1585,7 @@
 						"type": "text"
 					}
 				],
-				"url": "{{base_URL}}secret/note"
+				"url": "{{base_URL}}/secret/note"
 			},
 			"response": []
 		},
@@ -1626,7 +1629,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}secret/note"
+				"url": "{{base_URL}}/secret/note"
 			},
 			"response": []
 		},
@@ -1665,7 +1668,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}secret/note"
+				"url": "{{base_URL}}/secret/note"
 			},
 			"response": []
 		},
@@ -1709,7 +1712,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}secret/note"
+				"url": "{{base_URL}}/secret/note"
 			},
 			"response": []
 		},
@@ -1754,7 +1757,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}secret/note"
+				"url": "{{base_URL}}/secret/note"
 			},
 			"response": []
 		},
@@ -1796,7 +1799,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}secret/note"
+				"url": "{{base_URL}}/secret/note"
 			},
 			"response": []
 		},
@@ -1819,9 +1822,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_URL}}todos?doneStatus=true",
+					"raw": "{{base_URL}}/todos?doneStatus=true",
 					"host": [
-						"{{base_URL}}todos"
+						"{{base_URL}}"
+					],
+					"path": [
+						"todos"
 					],
 					"query": [
 						{
@@ -1850,7 +1856,7 @@
 				},
 				"method": "GET",
 				"header": [],
-				"url": "{{base_URL}}todos"
+				"url": "{{base_URL}}/todos"
 			},
 			"response": []
 		},
@@ -1912,7 +1918,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}todos"
+				"url": "{{base_URL}}/todos"
 			},
 			"response": []
 		},
@@ -1979,7 +1985,7 @@
 						}
 					}
 				},
-				"url": "{{base_URL}}todos/{{todo_id}}"
+				"url": "{{base_URL}}/todos/{{todo_id}}"
 			},
 			"response": []
 		},
@@ -2044,7 +2050,7 @@
 					"mode": "raw",
 					"raw": "{{todo_payload}}"
 				},
-				"url": "{{base_URL}}todos"
+				"url": "{{base_URL}}/todos"
 			},
 			"response": []
 		}
